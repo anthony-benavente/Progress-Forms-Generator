@@ -8,6 +8,8 @@ namespace ProgressFormsGenerator.HTML
 {
     public class HtmlElement
     {
+        public event EventHandler ElementChanged;
+
         private string tagName;
         private string innerHTML;
         private Dictionary<string, string> attributes;
@@ -34,22 +36,27 @@ namespace ProgressFormsGenerator.HTML
             foreach (HtmlElement element in elements) 
             {
                 children.Add(element);
+                element.ElementChanged += (s, e) => ElementChanged?.Invoke(s, e);
             }
+            ElementChanged?.Invoke(this, new EventArgs());
         }
 
         public void AddAttribute(string attributeName, string attributeValue = "")
         {
             attributes.Add(attributeName, attributeValue);
+            ElementChanged?.Invoke(this, new EventArgs());
         }
 
         public void AddClass(string className)
         {
             classes.Add(className);
+            ElementChanged?.Invoke(this, new EventArgs());
         }
 
         public void RemoveClass(string className)
         {
             classes.Remove(className);
+            ElementChanged?.Invoke(this, new EventArgs());
         }
 
         public override string ToString()
@@ -70,6 +77,11 @@ namespace ProgressFormsGenerator.HTML
             }
             result.Append("</").Append(tagName).Append(">");
             return result.ToString();
+        }
+
+        public string GetId()
+        {
+            return Attributes.ContainsKey("id") ? Attributes["id"] : "";
         }
     }
 }

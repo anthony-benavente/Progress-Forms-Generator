@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgressFormsGenerator", "ProgressFormsGenerator\ProgressFormsGenerator.csproj", "{D76A6586-D17C-4436-B886-527BDAAF7106}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTMLEditor", "HTMLEditor\HTMLEditor.csproj", "{BC31371F-96C6-4304-A31A-E769C0589652}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgressFormsGeneratorCore", "ProgressFormsGeneratorCore\ProgressFormsGeneratorCore.csproj", "{4FFED506-F9B2-4C21-BC20-C84121DE6399}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{D76A6586-D17C-4436-B886-527BDAAF7106}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D76A6586-D17C-4436-B886-527BDAAF7106}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D76A6586-D17C-4436-B886-527BDAAF7106}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC31371F-96C6-4304-A31A-E769C0589652}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC31371F-96C6-4304-A31A-E769C0589652}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC31371F-96C6-4304-A31A-E769C0589652}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC31371F-96C6-4304-A31A-E769C0589652}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FFED506-F9B2-4C21-BC20-C84121DE6399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FFED506-F9B2-4C21-BC20-C84121DE6399}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FFED506-F9B2-4C21-BC20-C84121DE6399}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FFED506-F9B2-4C21-BC20-C84121DE6399}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

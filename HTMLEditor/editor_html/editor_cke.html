@@ -1,0 +1,195 @@
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="spectrum.js"></script>
+    <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+    <link rel="stylesheet" href="spectrum.css">
+    <link rel="stylesheet" href="sp-dark.css">
+    <style>
+        .sp-preview {
+            position: relative !important;
+            width: 25px !important;
+            height: 20px !important;
+            border: solid 1px #222 !important;
+            margin-right: 5px !important;
+            float: left !important;
+            z-index: 0 !important;
+        }
+        span.cke_toolbar_break {
+            display: none !important;
+        }
+    </style>
+    <script type="text/javascript">
+    var backColor = '#dddddd';
+    var IsReady = "false";
+    var editorName = '';
+    var disabled = false;
+    var loaded = false;
+    var editor = undefined;
+    var tempJsVar = '';
+
+    function getHtmlOfEditor() {
+        var html = CKEDITOR.instances['editor'].getData().replace('type="text"', 'type="text/css"');
+        return html;
+    }
+
+    function setHtmlOfEditor(html) {
+        var processed = processHtml(html);
+        CKEDITOR.instances['editor'].setData(processed);
+        IsReady = 'true';
+    }
+
+    function setUiColor(col) {
+        CKEDITOR.instances['editor'].setUiColor(col);
+    }
+
+    function setBackColor(val) {
+        backColor = val;
+    }
+
+    function setDisabled(val) {
+        disabled = val;
+        if (loaded) {
+            if (disabled) {
+                hideToolBarDiv();
+            }
+        }
+    }
+
+    //Whenever CKEditor get focus. We will show the toolbar DIV.
+     function showToolBarDiv(  )
+     {
+      // Select the correct toolbar DIV and show it.
+      //'event.editor.name' returns the name of the DIV receiving focus.
+        try {
+            // disabled = false;
+            toolbar.style.display = "block";
+            editor.execCommand("maximize");
+        } catch (err) { alert(err); }
+     }
+
+     //Whenever CKEditor loses focus, We will hide the corresponding toolbar DIV.
+     function hideToolBarDiv(  )
+     {
+        // Select the correct toolbar DIV and hide it.
+        try {
+            // disabled = true;
+            toolbar.style.display = "none";
+            editor.execCommand("maximize");
+            editor.setReadOnly(disabled);
+        } catch (err) { alert(err); }
+     }
+
+    function my_onkeydown_handler() {
+        switch (event.keyCode) {
+            case 116 : // 'F5'
+                event.returnValue = false;
+                event.keyCode = 0;
+                window.status = "We have disabled F5";
+                break;
+        }
+    }
+
+    function processHtml(html) {
+        var processed = html;
+        return processed;
+    }
+    </script>
+    <style>
+    a img { border: none; }
+    textarea {
+        overflow: auto !important;
+        white-space: pre-wrap !important;
+        -ms-word-wrap: normal !important;
+        -ms-tab-size: 2;
+        filter: 2;
+    }
+    form {
+        margin: 0;
+        padding: 0;
+    }
+
+    #cke_editor {
+        padding: 0px !important;
+    }
+
+    #overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        background: #fff;
+    }
+    </style>
+</head>
+<body style="margin: 0px 3px -5px -5px;">
+    <div id="overlay"></div>
+    <form>
+        <textarea id="editor"></textarea>
+        <script type="text/javascript" src="ace/ace.js"></script>
+        <script type="text/javascript">
+            // var isReady = "false";
+            // CKEDITOR.plugins.add('removebluebox', {
+            //     // onLoad: function() {
+            //     //     CKEDITOR.addCss(
+            //     //         'a img {'           +
+            //     //         '    border: 0 !important;'    +
+            //     //         '}'
+            //     //     );
+            //     // }
+            // })
+
+            function getToolBar(container) {
+                var children = container.childNodes;
+                var toolbar = undefined;
+                for (var i = 0; i < children.length && toolbar === undefined; i++) {
+                    var child = children[i];
+                    if (child.id && child.id.indexOf("_top") > 0){
+                        return child;
+                    } else {
+                        toolbar = getToolBar(child);
+                    }
+                }
+                return toolbar;
+            }
+
+            CKEDITOR.replace('editor', {
+                coreStyles_bold: { element: 'b' },
+                coreStyles_italic: { element: 'i' },
+                fontSize_style: {
+                    element: 'font',
+                    attributes: { 'size': '#(size)' }
+                },
+                fontSize_sizes: '1/1;2/2;3/3;4/4;5/5;6/6;7/7;8/8;9/9'
+            });
+
+            CKEDITOR.on('instanceReady',
+                function(evt) {
+                    // CKEDITOR.instances['editor'].execCommand('maximize');
+                    editorName = evt.editor.name;
+                    editor = evt.editor;
+                    toolbar = getToolBar(editor.container.$);
+                    loaded = true;
+                    if (disabled) {
+                        hideToolBarDiv();
+                    }
+
+                    setUiColor(backColor);
+                    setHtmlOfEditor(getHtmlOfEditor().replace('type="text"', 'type="text/css"'));
+                    evt.editor.on('mode', function() {
+                        setHtmlOfEditor(getHtmlOfEditor().replace('type="text"', 'type="text/css"'));
+                    });
+
+
+                    document.title="Ready";
+                    document.getElementById('overlay').style.display = "none";
+                }
+            );
+        </script>
+    </form>
+    <span style="display:none;" name="form_text" id="form_text"></span>
+</body>
+</html>

@@ -52,19 +52,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Forms\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Modals\frmNewField.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Modals\frmNewField.Designer.cs">
+      <DependentUpon>frmNewField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Modals\frmNewTab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Modals\frmNewTab.Designer.cs">
+      <DependentUpon>frmNewTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HTML\FieldType.cs" />
+    <Compile Include="HTML\FormField.cs" />
     <Compile Include="HTML\HtmlDocument.cs" />
     <Compile Include="HTML\HtmlElement.cs" />
     <Compile Include="HTML\ProgressFormsTab.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Modals\frmNewField.resx">
+      <DependentUpon>frmNewField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Modals\frmNewTab.resx">
+      <DependentUpon>frmNewTab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -88,6 +108,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HTMLEditor\HTMLEditor.csproj">
+      <Project>{BC31371F-96C6-4304-A31A-E769C0589652}</Project>
+      <Name>HTMLEditor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
