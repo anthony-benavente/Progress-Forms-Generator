@@ -68,6 +68,7 @@
             // 
             // btnRemoveTab
             // 
+            this.btnRemoveTab.Enabled = false;
             this.btnRemoveTab.Location = new System.Drawing.Point(99, 458);
             this.btnRemoveTab.Name = "btnRemoveTab";
             this.btnRemoveTab.Size = new System.Drawing.Size(81, 23);

@@ -31,11 +31,21 @@ namespace ProgressFormsGenerator
             tabs = new BindingList<ProgressFormsTab>();
             tabs.AllowEdit = true;
         }
+        
 
         private void FormMain_Load(object sender, EventArgs e)
         {
             lstTabs.DisplayMember = "Label";
             lstTabs.DataSource = tabs;
+            lstTabs.SelectedIndexChanged += LstTabs_SelectedIndexChanged;
+        }
+
+        private void LstTabs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstTabs.SelectedItem != null)
+            {
+                HandleProgressFormsTabChanged(lstTabs.SelectedItem, e);
+            }
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -74,6 +84,7 @@ namespace ProgressFormsGenerator
             btnRemoveField.Enabled = true;
             btnPreviewFinal.Enabled = true;
             btnExport.Enabled = true;
+            btnRemoveTab.Enabled = true;
         }
 
         private void HandleProgressFormsTabChanged(object sender, EventArgs e)
@@ -125,12 +136,22 @@ namespace ProgressFormsGenerator
 
         private void btnRemoveTab_Click(object sender, EventArgs e)
         {
-            if (lstTabs.Items.Count == 0)
+            var selected = (ProgressFormsTab)lstTabs.SelectedItem;
+            var index = tabs.IndexOf(selected);
+
+            tabs.RemoveAt(index);
+            if (tabs.Count == 0)
             {
+                btnRemoveTab.Enabled = false;
                 btnAddField.Enabled = false;
                 btnRemoveField.Enabled = false;
                 btnPreviewFinal.Enabled = false;
                 btnExport.Enabled = false;
+
+                htmlEditor.AllHTML = "";
+            }
+            else
+            {
             }
         }
 
