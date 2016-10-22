@@ -17,6 +17,9 @@ namespace ProgressFormsGenerator.Forms.Modals
         public string name;
         public FieldType type;
 
+        private string lastLabel;
+        private string lastName;
+
         public frmNewField()
         {
             InitializeComponent();
@@ -39,12 +42,33 @@ namespace ProgressFormsGenerator.Forms.Modals
         {
             var cbo = (ComboBox)sender;
 
-            txtName.Enabled = txtLabel.Enabled = cbo.SelectedText.ToLower() == "separator";
+            txtName.Enabled = txtLabel.Enabled = cbo.SelectedItem.ToString().ToLower() != "separator";
             if (!txtName.Enabled)
             {
                 txtLabel.Text = "<hr>";
                 txtName.Text = "<hr>";
             }
+            else
+            {
+                txtLabel.Text = lastLabel;
+                txtName.Text = lastName;
+            }
+        }
+
+        private void txtLabel_TextChanged(object sender, EventArgs e)
+        {
+            if (cboFieldType.SelectedItem.ToString() != "Separator")
+            {
+                if (sender == txtLabel)
+                {
+                    lastLabel = txtLabel.Text;
+                }
+                else
+                {
+                    lastName = txtName.Text;
+                }
+            }
+
         }
     }
 }

@@ -71,6 +71,7 @@
             this.txtLabel.Name = "txtLabel";
             this.txtLabel.Size = new System.Drawing.Size(338, 20);
             this.txtLabel.TabIndex = 3;
+            this.txtLabel.TextChanged += new System.EventHandler(this.txtLabel_TextChanged);
             // 
             // txtName
             // 
@@ -78,6 +79,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(338, 20);
             this.txtName.TabIndex = 4;
+            this.txtName.TextChanged += new System.EventHandler(this.txtLabel_TextChanged);
             // 
             // cboFieldType
             // 
