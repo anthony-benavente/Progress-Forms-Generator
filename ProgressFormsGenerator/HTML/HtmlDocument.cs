@@ -57,5 +57,10 @@ namespace ProgressFormsGenerator.HTML
 
             return result.ToArray();
         }
+
+        public override string ToString()
+        {
+            return RootElement.ToString();
+        }
     }
 }
