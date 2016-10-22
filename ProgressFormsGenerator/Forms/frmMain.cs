@@ -66,6 +66,9 @@ namespace ProgressFormsGenerator
 
                 lstTabs.SelectedIndex = lstTabs.Items.Count - 1;
             }
+
+            btnAddField.Enabled = true;
+            btnRemoveField.Enabled = true;
         }
 
         private void HandleProgressFormsTabChanged(object sender, EventArgs e)
@@ -107,6 +110,15 @@ namespace ProgressFormsGenerator
                 selectedTab.Document.RootElement.Children[0].AddChildren(field.GetHtmlElement());
 
                 lstFields.Items.Add(field);
+            }
+        }
+
+        private void btnRemoveTab_Click(object sender, EventArgs e)
+        {
+            if (lstTabs.Items.Count == 0)
+            {
+                btnAddField.Enabled = false;
+                btnRemoveField.Enabled = false;
             }
         }
     }

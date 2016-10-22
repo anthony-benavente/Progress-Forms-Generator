@@ -71,6 +71,7 @@
             this.btnRemoveTab.TabIndex = 2;
             this.btnRemoveTab.Text = "Remove Tab";
             this.btnRemoveTab.UseVisualStyleBackColor = true;
+            this.btnRemoveTab.Click += new System.EventHandler(this.btnRemoveTab_Click);
             // 
             // menuStrip1
             // 
@@ -121,7 +122,7 @@
             // 
             // htmlEditor
             // 
-            this.htmlEditor.AllHTML = "";
+            this.htmlEditor.AllHTML = null;
             this.htmlEditor.Location = new System.Drawing.Point(360, 32);
             this.htmlEditor.Name = "htmlEditor";
             this.htmlEditor.Size = new System.Drawing.Size(668, 420);
@@ -137,6 +138,7 @@
             // 
             // btnRemoveField
             // 
+            this.btnRemoveField.Enabled = false;
             this.btnRemoveField.Location = new System.Drawing.Point(273, 458);
             this.btnRemoveField.Name = "btnRemoveField";
             this.btnRemoveField.Size = new System.Drawing.Size(81, 23);
@@ -146,6 +148,7 @@
             // 
             // btnAddField
             // 
+            this.btnAddField.Enabled = false;
             this.btnAddField.Location = new System.Drawing.Point(186, 458);
             this.btnAddField.Name = "btnAddField";
             this.btnAddField.Size = new System.Drawing.Size(77, 23);
