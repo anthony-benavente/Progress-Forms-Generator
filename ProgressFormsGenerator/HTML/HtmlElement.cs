@@ -65,7 +65,7 @@ namespace ProgressFormsGenerator.HTML
 
         public string GetAttribute(string v)
         {
-            return Attributes.Keys.Contains(v) ? Attributes["v"] : "";
+            return Attributes.Keys.Contains(v) ? Attributes[v] : "";
         }
 
         public HtmlElement Find(Func<HtmlElement, bool> pred)

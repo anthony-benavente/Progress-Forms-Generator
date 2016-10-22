@@ -149,6 +149,7 @@
             this.btnRemoveField.TabIndex = 8;
             this.btnRemoveField.Text = "Remove Field";
             this.btnRemoveField.UseVisualStyleBackColor = true;
+            this.btnRemoveField.Click += new System.EventHandler(this.btnRemoveField_Click);
             // 
             // btnAddField
             // 

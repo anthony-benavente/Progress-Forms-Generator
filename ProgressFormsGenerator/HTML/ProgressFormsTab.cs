@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,11 +13,11 @@ namespace ProgressFormsGenerator.HTML
 
         private HtmlDocument document;
 
-        private List<FormField> fields;
+        private BindingList<FormField> fields;
 
         private string _label;
 
-        public List<FormField> Fields
+        public BindingList<FormField> Fields
         {
             get { return fields;  }
         }
@@ -41,7 +42,7 @@ namespace ProgressFormsGenerator.HTML
         public ProgressFormsTab()
         {
             document = new HtmlDocument("div");
-            fields = new List<FormField>();
+            fields = new BindingList<FormField>();
             document.DocumentChanged += (s, e) => DocumentChanged?.Invoke(this, e);
         }
 
@@ -63,14 +64,24 @@ namespace ProgressFormsGenerator.HTML
 
         public void removeField(string name)
         {
-            int removed = fields.RemoveAll(x => x.ControlName == name);
-            if (removed == 0)
+            var field = fields.FirstOrDefault(x => x.Id == name);
+            if (field == null)
             {
                 throw new InvalidOperationException("This control does not exist.");
             }
             else
             {
-                document.RootElement.Children[0].Remove(x => x.GetAttribute("name") == name);
+                fields.Remove(field);
+                document.RootElement.Children[0].Remove(x => x.GetAttribute("id") == name);
+            }
+        }
+
+        public void RemoveField(int index)
+        {
+            var field = Fields[index];
+            if (field != null)
+            {
+                removeField(field.ControlName);
             }
         }
     }

@@ -38,6 +38,10 @@ namespace ProgressFormsGenerator
             lstTabs.DisplayMember = "Label";
             lstTabs.DataSource = tabs;
             lstTabs.SelectedIndexChanged += LstTabs_SelectedIndexChanged;
+
+            lstFields.DisplayMember = "Label";
+            lstFields.DataSource = null;
+            lstFields.ControlRemoved += LstTabs_SelectedIndexChanged;
         }
 
         private void LstTabs_SelectedIndexChanged(object sender, EventArgs e)
@@ -45,6 +49,11 @@ namespace ProgressFormsGenerator
             if (lstTabs.SelectedItem != null)
             {
                 HandleProgressFormsTabChanged(lstTabs.SelectedItem, e);
+            }
+
+            if (tabs.Count == 0)
+            {
+                lstFields.DataSource = null;
             }
         }
 
@@ -92,6 +101,8 @@ namespace ProgressFormsGenerator
             var tabSender = (ProgressFormsTab)sender;
             if (tabSender == selectedTab)   
             {
+                lstFields.DataSource = tabSender.Fields;
+
                 // We have to update the HTML control
                 htmlEditor.AllHTML = tabSender.GetHtml();
             }
@@ -103,12 +114,6 @@ namespace ProgressFormsGenerator
             {
                 selectedTab = (ProgressFormsTab)lstTabs.SelectedItem;
                 HandleProgressFormsTabChanged(selectedTab, e);
-
-                lstFields.Items.Clear();
-                foreach (FormField f in selectedTab.Fields)
-                {
-                    lstFields.Items.Add(f);
-                }
             }
         }
 
@@ -129,7 +134,6 @@ namespace ProgressFormsGenerator
                     field.ControlName = newField.name;
                 }
                 selectedTab.AddField(field);
-                lstFields.Items.Add(field);
             }
             HandleProgressFormsTabChanged(selectedTab, null);
         }
@@ -149,9 +153,6 @@ namespace ProgressFormsGenerator
                 btnExport.Enabled = false;
 
                 htmlEditor.AllHTML = "";
-            }
-            else
-            {
             }
         }
 
@@ -187,6 +188,16 @@ namespace ProgressFormsGenerator
                     HandleProgressFormsTabChanged(tab, null);
                 }
             }
+        }
+
+        private void btnRemoveField_Click(object sender, EventArgs e)
+        {
+            var selectedTab = (ProgressFormsTab)lstTabs.SelectedItem;
+            var selected = (FormField)lstFields.SelectedItem;
+            var index = selectedTab.Fields.IndexOf(selected);
+
+            selectedTab.RemoveField(index);
+            LstTabs_SelectedIndexChanged(selectedTab, null);
         }
     }
 }
