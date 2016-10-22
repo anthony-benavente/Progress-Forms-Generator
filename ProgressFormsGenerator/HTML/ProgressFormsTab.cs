@@ -43,7 +43,7 @@ namespace ProgressFormsGenerator.HTML
         public void AddField(FormField f)
         {
             fields.Add(f);
-            document.RootElement.Append(f.GetHtmlElement());
+            document.RootElement.Children[0].Append(f.GetHtmlElement());
         }
 
         public void removeField(string name)
@@ -55,7 +55,7 @@ namespace ProgressFormsGenerator.HTML
             }
             else
             {
-                document.RootElement.Remove(x => x.GetAttribute("name") == name);
+                document.RootElement.Children[0].Remove(x => x.GetAttribute("name") == name);
             }
         }
     }
