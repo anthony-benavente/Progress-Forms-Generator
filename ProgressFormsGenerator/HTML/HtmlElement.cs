@@ -41,6 +41,45 @@ namespace ProgressFormsGenerator.HTML
             ElementChanged?.Invoke(this, new EventArgs());
         }
 
+        public void Append(HtmlElement f)
+        {
+            Children.Add(f);
+        }
+
+        public int Remove(Func<HtmlElement, bool> pred)
+        {
+            int result = 0;
+            for (int i = 0; i < Children.Count; i++)
+            {
+                var child = Children[i];
+                if (pred(child))
+                {
+                    Children.Remove(child);
+                    result++;
+                }
+            }
+            return result;
+        }
+
+        public string GetAttribute(string v)
+        {
+            return Attributes.Keys.Contains(v) ? Attributes["v"] : "";
+        }
+
+        public HtmlElement Find(Func<HtmlElement, bool> pred)
+        {
+            foreach (HtmlElement child in Children)
+            {
+                if (pred(child)) return child;
+            }
+            return null;
+        }
+
+        internal void Append()
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddAttribute(string attributeName, string attributeValue = "")
         {
             attributes.Add(attributeName, attributeValue);

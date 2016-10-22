@@ -16,7 +16,6 @@ namespace ProgressFormsGenerator
     {
 
         private List<ProgressFormsTab> tabs;
-        private HtmlPanel previewPanel;
         private ProgressFormsTab selectedTab;
 
         // This is what gets exported when the export button is pressed
@@ -87,12 +86,17 @@ namespace ProgressFormsGenerator
             {
                 selectedTab = (ProgressFormsTab)lstTabs.SelectedItem;
                 HandleProgressFormsTabChanged(selectedTab, e);
+
+                lstFields.Items.Clear();
+                foreach (FormField f in selectedTab.Fields)
+                {
+                    lstFields.Items.Add(f);
+                }
             }
         }
 
         private void tabBuilder_Selected(object sender, System.Windows.Forms.TabControlEventArgs e)
         {
-            previewPanel.Text = htmlEditor.AllHTML;
         }
 
         private void btnAddField_Click(object sender, EventArgs e)
@@ -107,10 +111,10 @@ namespace ProgressFormsGenerator
                     field.Label = newField.label;
                     field.ControlName = newField.name;
                 }
-                selectedTab.Document.RootElement.Children[0].AddChildren(field.GetHtmlElement());
-
+                selectedTab.AddField(field);
                 lstFields.Items.Add(field);
             }
+            HandleProgressFormsTabChanged(selectedTab, null);
         }
 
         private void btnRemoveTab_Click(object sender, EventArgs e)
