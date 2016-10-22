@@ -52,6 +52,7 @@ namespace ProgressFormsGenerator.HTML
             {
                 _name = value;
 
+                var label = fieldGroup.Children[0];
                 var input = fieldGroup.Children[1];
 
                 if (input.Attributes.ContainsKey("name"))
@@ -63,6 +64,15 @@ namespace ProgressFormsGenerator.HTML
                 {
                     input.AddAttribute("name", _name);
                     input.AddAttribute("id", _name);
+                }
+
+                if (label.Attributes.ContainsKey("for"))
+                {
+                    label.Attributes["for"] = _name;
+                }
+                else
+                {
+                    label.AddAttribute("for", _name);
                 }
             }
         }
