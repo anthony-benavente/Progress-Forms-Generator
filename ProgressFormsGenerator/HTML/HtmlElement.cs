@@ -72,7 +72,18 @@ namespace ProgressFormsGenerator.HTML
         {
             foreach (HtmlElement child in Children)
             {
-                if (pred(child)) return child;
+                if (pred(child))
+                {
+                    return child;
+                }
+                else
+                {
+                    var tmp = child.Find(pred);
+                    if (tmp != null)
+                    {
+                        return tmp;
+                    }
+                }
             }
             return null;
         }
