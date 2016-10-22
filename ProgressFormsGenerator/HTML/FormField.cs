@@ -28,15 +28,15 @@ namespace ProgressFormsGenerator.HTML
             set
             {
                 _fieldType = value;
-
                 switch (_fieldType)
                 {
                     case FieldType.Input:
                     default:
-                        inputElement = new HtmlElement("input");
+                        fieldGroup.Children[1] = new HtmlElement("input");
                         break;
                     case FieldType.Separator:
-                        inputElement = new HtmlElement("hr");
+                        fieldGroup.Remove(x => x.TagName == "label");
+                        fieldGroup.Children[0] = new HtmlElement("hr", true);
                         break;
                 }
             }
@@ -52,7 +52,7 @@ namespace ProgressFormsGenerator.HTML
             {
                 _name = value;
 
-                var input = fieldGroup.Find(x => x.TagName == "input");
+                var input = fieldGroup.Children[1];
 
                 if (input.Attributes.ContainsKey("name"))
                 {
@@ -83,6 +83,8 @@ namespace ProgressFormsGenerator.HTML
             Label = label;
             FieldType = type;
             ControlName = controlName;
+
+
         }
 
         public override string ToString()

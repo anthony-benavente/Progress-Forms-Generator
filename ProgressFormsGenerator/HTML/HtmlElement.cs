@@ -10,6 +10,7 @@ namespace ProgressFormsGenerator.HTML
     {
         public event EventHandler ElementChanged;
 
+        private bool selfClosing;
         private string tagName;
         private string innerHTML;
         private Dictionary<string, string> attributes;
@@ -22,13 +23,14 @@ namespace ProgressFormsGenerator.HTML
         public List<HtmlElement> Children { get { return children; } }
 
 
-        public HtmlElement(string tagName)
+        public HtmlElement(string tagName, bool selfClosing=false)
         {
             this.tagName = tagName;
             this.innerHTML = "";
             this.attributes = new Dictionary<string, string>();
             this.children = new List<HtmlElement>();
             this.classes = new HashSet<string>();
+            this.selfClosing = selfClosing;
         }
 
         public void AddChildren(params HtmlElement[] elements)
@@ -109,12 +111,17 @@ namespace ProgressFormsGenerator.HTML
             {
                 result.Append(String.Format("class=\"{0}\" ", String.Join(" ", classes)));
             }
-            result.Append(">").Append(innerHTML);
-            foreach (HtmlElement child in children)
+            result.Append(">");
+
+            if (!selfClosing)
             {
-                result.Append(child.ToString());
+                result.Append(innerHTML);
+                foreach (HtmlElement child in children)
+                {
+                    result.Append(child.ToString());
+                }
+                result.Append("</").Append(tagName).Append(">");
             }
-            result.Append("</").Append(tagName).Append(">");
             return result.ToString();
         }
 

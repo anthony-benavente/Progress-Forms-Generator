@@ -34,7 +34,7 @@ namespace ProgressFormsGenerator.Forms.Modals
         {
             label = txtLabel.Text;
             name = txtName.Text;
-            type = FieldTypeUtil.Parse(cboFieldType.SelectedText);
+            type = FieldTypeUtil.Parse(cboFieldType.SelectedItem.ToString());
             DialogResult = DialogResult.OK;
         }
 
