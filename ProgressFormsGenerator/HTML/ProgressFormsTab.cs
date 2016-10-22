@@ -14,13 +14,28 @@ namespace ProgressFormsGenerator.HTML
 
         private List<FormField> fields;
 
+        private string _label;
+
         public List<FormField> Fields
         {
             get { return fields;  }
         }
 
         public int Index { get; set; }
-        public string Label { get; set; }
+        public string Label
+        {
+            get { return _label; }
+            set
+            {
+                _label = value;
+
+                var legend = Document.RootElement.Find(x => x.TagName == "legend");
+                if (legend != null)
+                {
+                    legend.InnerHTML = _label;
+                }
+            }
+        }
         public HtmlDocument Document { get { return document; } set { document = value; } }
 
         public ProgressFormsTab()
