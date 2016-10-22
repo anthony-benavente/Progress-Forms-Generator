@@ -25,6 +25,11 @@ namespace ProgressFormsGenerator.Forms.Modals
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Closes the dialog and sets the result to be Ok.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOk_Click(object sender, EventArgs e)
         {
             label = txtLabel.Text;
@@ -33,11 +38,22 @@ namespace ProgressFormsGenerator.Forms.Modals
             DialogResult = DialogResult.OK;
         }
 
+        /// <summary>
+        /// Closes the dialog and doesn't save anything.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
         }
 
+        /// <summary>
+        /// Called when the field type changes. This is used to change the text in the name/label to be
+        /// <hr> whenever separator is selected.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cboFieldType_SelectedIndexChanged(object sender, EventArgs e)
         {
             var cbo = (ComboBox)sender;
@@ -55,6 +71,13 @@ namespace ProgressFormsGenerator.Forms.Modals
             }
         }
 
+        /// <summary>
+        /// This event is called when either the label or name of the field changes. This is so we
+        /// can save the text before when changing to different field types (makes it easier to use
+        /// :)).
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtLabel_TextChanged(object sender, EventArgs e)
         {
             if (cboFieldType.SelectedItem.ToString() != "Separator")
