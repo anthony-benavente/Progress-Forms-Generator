@@ -41,6 +41,8 @@
             this.lstFields = new System.Windows.Forms.ListBox();
             this.btnRemoveField = new System.Windows.Forms.Button();
             this.btnAddField = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.btnPreviewFinal = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -99,19 +101,19 @@
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl+N";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(138, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.quitToolStripMenuItem.Text = "Quit";
             // 
             // aboutToolStripMenuItem
@@ -157,11 +159,32 @@
             this.btnAddField.UseVisualStyleBackColor = true;
             this.btnAddField.Click += new System.EventHandler(this.btnAddField_Click);
             // 
+            // btnExport
+            // 
+            this.btnExport.Location = new System.Drawing.Point(892, 458);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(136, 23);
+            this.btnExport.TabIndex = 9;
+            this.btnExport.Text = "Export to HTML";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // btnPreviewFinal
+            // 
+            this.btnPreviewFinal.Location = new System.Drawing.Point(750, 458);
+            this.btnPreviewFinal.Name = "btnPreviewFinal";
+            this.btnPreviewFinal.Size = new System.Drawing.Size(136, 23);
+            this.btnPreviewFinal.TabIndex = 10;
+            this.btnPreviewFinal.Text = "Preview";
+            this.btnPreviewFinal.UseVisualStyleBackColor = true;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1040, 496);
+            this.Controls.Add(this.btnPreviewFinal);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnRemoveField);
             this.Controls.Add(this.btnAddField);
             this.Controls.Add(this.lstFields);
@@ -196,6 +219,8 @@
         private System.Windows.Forms.ListBox lstFields;
         private System.Windows.Forms.Button btnRemoveField;
         private System.Windows.Forms.Button btnAddField;
+        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Button btnPreviewFinal;
     }
 }
 

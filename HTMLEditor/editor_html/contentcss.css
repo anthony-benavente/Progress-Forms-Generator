@@ -1,4 +1,145 @@
-﻿/*progressbar*/
+﻿@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300,800);
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+
+* {
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding-top: 35px;
+}
+
+fieldset {
+    border: 0;
+}
+
+fieldset legend {
+    font-size: 23px;
+}
+
+fieldset > div {
+    margin-left: 20px;
+}
+
+input,
+input[type='text'],
+input[type='email'],
+input[type='password'],
+select {
+    padding: 5px 3px;
+
+    border: 1px solid lightgray;
+    border-radius: 3px;
+}
+
+select {
+    background: #fff;
+}
+
+.container {
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.fieldgroup {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.fieldgroup label {
+    font-size: 12px;
+
+    display: inline-block;
+
+    width: 160px;
+}
+
+.sm {
+    width: 80px;
+}
+
+.lg {
+    width: 350px;
+}
+
+label.full {
+    width: 100%;
+}
+
+.col-3 {
+    width: 33.33%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.col {
+    float: left;
+}
+
+.row:after {
+    display: table;
+    clear: both;
+
+    content: ' ';
+}
+.right {
+    float: right;
+}
+.required {
+    font-size: 10px;
+
+    color: #c00;
+}
+.next-prev-bar .next {
+    float: right;
+}
+.next-prev-bar .next:hover {
+    margin-right: 0;
+}
+.next-prev-bar .prev {
+    float: left;
+}
+.next-prev-bar .prev:hover {
+    margin-left: 0;
+}
+.next-prev-bar button {
+    font-size: 16px;
+
+    margin: 0 15px;
+
+    cursor: pointer;
+    cursor: hand;
+    -webkit-transition: margin .3s ease;
+            transition: margin .3s ease;
+
+    color: #c00;
+    border: 0;
+    outline: none;
+    background: #fff;
+}
+.next-prev-bar button i {
+    margin: 0 5px;
+
+    color: #333;
+}
+
+.progressBar li:before {
+    font-family: Montserrat, arial, sans-serif;
+}
+.progressBar li.completed:before {
+    font-family: FontAwesome !important;
+
+    content: '\f00c' !important;
+}
+.progressBar li.active:before,
+.progressBar li.active:after {
+    color: white;
+    background: #c00;
+}
+/*progressbar*/
 .progressBar {
     overflow: hidden;
 

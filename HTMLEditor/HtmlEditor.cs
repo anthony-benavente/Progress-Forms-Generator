@@ -27,7 +27,7 @@ namespace HTMLEditor
         public HtmlEditor()
         {
             InitializeComponent();
-            webMain.Navigate(@"file:///C:\Users\Anthony\Documents\Visual Studio 2013\Projects\ProgressFormsGenerator\HTMLEditor\bin\Debug\editor_html\editor_cke.html");
+            webMain.Navigate(@"file:///C:\Users\abena\Documents\Visual Studio 2015\Projects\progress-forms-generator\HTMLEditor\bin\Debug\editor_html\editor_cke.html");
         }
 
         private string Clean(string value)

@@ -125,5 +125,16 @@ namespace ProgressFormsGenerator
                 btnRemoveField.Enabled = false;
             }
         }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            HtmlDocument result = new HtmlDocument();
+            foreach (ProgressFormsTab tab in lstTabs.Items)
+            {
+                result.RootElement.Append(tab.Document.RootElement);
+            }
+            ExportedHtmlForm form = new ExportedHtmlForm(result);
+            form.ShowDialog();
+        }
     }
 }
