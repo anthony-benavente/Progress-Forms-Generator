@@ -15,7 +15,8 @@ namespace ProgressFormsGenerator
     public partial class FormMain : System.Windows.Forms.Form
     {
 
-        private List<ProgressFormsTab> tabs;
+        private BindingList<ProgressFormsTab> tabs;
+
         private ProgressFormsTab selectedTab;
 
         // This is what gets exported when the export button is pressed
@@ -27,11 +28,14 @@ namespace ProgressFormsGenerator
             InitializeComponent();
             mainDoc = new HtmlDocument("form");
             mainDoc.RootElement.AddAttribute("id", "formWrapper");
-            tabs = new List<ProgressFormsTab>();
+            tabs = new BindingList<ProgressFormsTab>();
+            tabs.AllowEdit = true;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+            lstTabs.DisplayMember = "Label";
+            lstTabs.DataSource = tabs;
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -46,11 +50,11 @@ namespace ProgressFormsGenerator
             {
                 var newTab = new ProgressFormsTab() 
                 { 
-                    Index = lstTabs.Items.Count, 
+                    Index = tabs.Count, 
                     Label = newTabDialog.Result
                 };
                 newTab.DocumentChanged += HandleProgressFormsTabChanged;
-                lstTabs.Items.Add(newTab);
+                tabs.Add(newTab);
 
                 var fieldset = new HtmlElement("fieldset");
                 {
@@ -133,12 +137,35 @@ namespace ProgressFormsGenerator
         private void btnExport_Click(object sender, EventArgs e)
         {
             HtmlDocument result = new HtmlDocument();
-            foreach (ProgressFormsTab tab in lstTabs.Items)
+            foreach (ProgressFormsTab tab in tabs)
             {
                 result.RootElement.Append(tab.Document.RootElement);
             }
             ExportedHtmlForm form = new ExportedHtmlForm(result);
             form.ShowDialog();
+        }
+
+        /// <summary>
+        /// This event is called when the list of tabs is double clicked. If there is a selected
+        /// tab, we open up a dialog to change its name.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lstTabs_DoubleClick(object sender, EventArgs e)
+        {
+            var tab = (ProgressFormsTab)lstTabs.SelectedItem;
+
+            if (tab != null)
+            {
+                EditTabForm form = new EditTabForm(tab);
+                if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    var tabIndex = tabs.IndexOf(tab);
+                    tabs[tabIndex].Label = form.NewTabLabel;
+                    tabs.ResetItem(tabIndex);
+                    HandleProgressFormsTabChanged(tab, null);
+                }
+            }
         }
     }
 }

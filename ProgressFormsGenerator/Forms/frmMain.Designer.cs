@@ -54,6 +54,7 @@
             this.lstTabs.Size = new System.Drawing.Size(168, 420);
             this.lstTabs.TabIndex = 0;
             this.lstTabs.SelectedIndexChanged += new System.EventHandler(this.lstTabs_SelectedIndexChanged);
+            this.lstTabs.DoubleClick += new System.EventHandler(this.lstTabs_DoubleClick);
             // 
             // btnAddTab
             // 
