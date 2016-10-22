@@ -68,12 +68,14 @@ namespace ProgressFormsGenerator
 
             btnAddField.Enabled = true;
             btnRemoveField.Enabled = true;
+            btnPreviewFinal.Enabled = true;
+            btnExport.Enabled = true;
         }
 
         private void HandleProgressFormsTabChanged(object sender, EventArgs e)
         {
             var tabSender = (ProgressFormsTab)sender;
-            if (tabSender == selectedTab)
+            if (tabSender == selectedTab)   
             {
                 // We have to update the HTML control
                 htmlEditor.AllHTML = tabSender.GetHtml();
@@ -123,6 +125,8 @@ namespace ProgressFormsGenerator
             {
                 btnAddField.Enabled = false;
                 btnRemoveField.Enabled = false;
+                btnPreviewFinal.Enabled = false;
+                btnExport.Enabled = false;
             }
         }
 

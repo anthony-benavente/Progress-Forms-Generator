@@ -101,19 +101,19 @@
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl+N";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(138, 6);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.quitToolStripMenuItem.Text = "Quit";
             // 
             // aboutToolStripMenuItem
@@ -161,6 +161,7 @@
             // 
             // btnExport
             // 
+            this.btnExport.Enabled = false;
             this.btnExport.Location = new System.Drawing.Point(892, 458);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(136, 23);
@@ -171,6 +172,7 @@
             // 
             // btnPreviewFinal
             // 
+            this.btnPreviewFinal.Enabled = false;
             this.btnPreviewFinal.Location = new System.Drawing.Point(750, 458);
             this.btnPreviewFinal.Name = "btnPreviewFinal";
             this.btnPreviewFinal.Size = new System.Drawing.Size(136, 23);
