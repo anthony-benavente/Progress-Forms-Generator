@@ -52,26 +52,23 @@ namespace ProgressFormsGenerator.HTML
             {
                 _name = value;
 
-                if (inputElement.Attributes.ContainsKey("name"))
+                var input = fieldGroup.Find(x => x.TagName == "input");
+
+                if (input.Attributes.ContainsKey("name"))
                 {
-                    inputElement.Attributes["name"] = _name;
-                    inputElement.Attributes["id"] = _name;
+                    input.Attributes["name"] = _name;
+                    input.Attributes["id"] = _name;
                 }
                 else
                 {
-                    inputElement.AddAttribute("name", _name);
-                    inputElement.AddAttribute("id", _name);
+                    input.AddAttribute("name", _name);
+                    input.AddAttribute("id", _name);
                 }
             }
         }
 
-        public FormField()
+        public FormField() : this("", "", FieldType.Input)
         {
-            fieldGroup = new HtmlElement("div");
-            fieldGroup.AddClass("fieldgroup");
-            labelElement = new HtmlElement("label");
-            inputElement = new HtmlElement("input");
-            fieldGroup.AddChildren(labelElement, inputElement);
         }
 
         public FormField(string label, string controlName, FieldType type)
@@ -79,12 +76,13 @@ namespace ProgressFormsGenerator.HTML
             fieldGroup = new HtmlElement("div");
             fieldGroup.AddClass("fieldgroup");
             labelElement = new HtmlElement("label");
+            inputElement = new HtmlElement("input");
+
+            fieldGroup.AddChildren(labelElement, inputElement);
 
             Label = label;
             FieldType = type;
             ControlName = controlName;
-
-            fieldGroup.AddChildren(labelElement, inputElement);
         }
 
         public override string ToString()
