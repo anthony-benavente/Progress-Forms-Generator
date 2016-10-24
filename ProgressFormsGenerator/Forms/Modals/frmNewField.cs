@@ -16,13 +16,23 @@ namespace ProgressFormsGenerator.Forms.Modals
         public string label;
         public string name;
         public FieldType type;
-
         private string lastLabel;
         private string lastName;
 
-        public frmNewField()
+        public frmNewField() : this(null) { }
+
+        public frmNewField(Dictionary<string, string> data)
         {
             InitializeComponent();
+            
+            if (data != null)
+            {
+                txtLabel.Text = data["label"];
+                txtName.Text = data["name"];
+                cboFieldType.Text = data["fieldType"];
+
+                txtLabel_TextChanged(null, null);
+            }
         }
 
         /// <summary>

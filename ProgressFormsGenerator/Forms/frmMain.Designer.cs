@@ -139,6 +139,7 @@
             this.lstFields.Name = "lstFields";
             this.lstFields.Size = new System.Drawing.Size(168, 420);
             this.lstFields.TabIndex = 6;
+            this.lstFields.DoubleClick += new System.EventHandler(this.lstFields_DoubleClick);
             // 
             // btnRemoveField
             // 

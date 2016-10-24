@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -123,17 +124,21 @@ namespace ProgressFormsGenerator
 
         private void btnAddField_Click(object sender, EventArgs e)
         {
-            frmNewField newField = new frmNewField();
+            bool editMode = e is FieldEventArgs;
+            frmNewField newField = new frmNewField(editMode ? ((FieldEventArgs) e).ToDict() : null);
+            FormField field = new FormField();
             if (newField.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                FormField field = new FormField();
+                if (editMode) field = (FormField)lstFields.SelectedItem;
+
                 field.FieldType = newField.type;
                 if (field.FieldType != FieldType.Separator)
                 {
                     field.Label = newField.label;
                     field.ControlName = newField.name;
                 }
-                selectedTab.AddField(field);
+
+                if (!editMode) selectedTab.AddField(field);
             }
             HandleProgressFormsTabChanged(selectedTab, null);
         }
@@ -198,6 +203,23 @@ namespace ProgressFormsGenerator
 
             selectedTab.RemoveField(index);
             LstTabs_SelectedIndexChanged(selectedTab, null);
+        }
+
+        /// <summary>
+        /// This event is used to check when a field has been clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lstFields_DoubleClick(object sender, EventArgs e)
+        {
+            var field = (FormField)lstFields.SelectedItem;
+
+            if (field != null)
+            {
+                btnAddField_Click(null, new FieldEventArgs(field.Label,
+                    field.ControlName,
+                    CultureInfo.CurrentCulture.TextInfo.ToTitleCase(field.FieldType.ToString())));
+            }
         }
     }
 }
